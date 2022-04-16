@@ -25,7 +25,7 @@ namespace DOM {
         std::cout << "Fuel tank volumes: " << _volume << " liters;" << std::endl;
         std::cout << "Speed: " << _speed << " km/h;" << std::endl;
         std::cout << "CO₂ emissions: " << _emissions << " kg;" << std::endl;
-        std::cout << "Horsepower: " << _horsepower * 745.69 << " watts;" << std::endl;
+        std::cout << "Horsepower: " << _horsepower << " 🐴;" << std::endl;
         std::cout << "Rotation frequency: " << _rotation_frequency << " RPM;" << std::endl;
 
     }
@@ -72,5 +72,17 @@ namespace DOM {
 
     void Engine::setRotationFrequency(int rotationFrequency) {
         _rotation_frequency = rotationFrequency;
+    }
+
+    Engine::Engine(Engine &&other) noexcept:
+    _id(other._id),  _emissions(other._emissions),
+    _horsepower(other._horsepower), _volume(other._volume),
+    _rotation_frequency(other._rotation_frequency), _speed(other._speed){
+        other._id = 0;
+        other._speed = 0;
+        other._rotation_frequency = 0;
+        other._volume = 0;
+        other._horsepower = 0;
+        other._emissions = 0;
     }
 } // DOM

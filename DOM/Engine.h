@@ -17,7 +17,7 @@ namespace DOM {
         int _rotation_frequency{};
 
         Engine();
-
+        Engine(Engine&& other) noexcept;
         Engine(double emissions, double volume, double speed, double horsepower, int rotationFrequency);
 
     public:
