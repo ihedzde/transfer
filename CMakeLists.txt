@@ -3,4 +3,4 @@ project(OOP)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(OOP main.cpp DOM/Engine.cpp DOM/Engine.h DOM/DieselEngine.cpp DOM/DieselEngine.h DOM/JetEngine.cpp DOM/JetEngine.h Utilities/RoundedDoublyLinkedList.cpp Utilities/RoundedDoublyLinkedList.h)
+add_executable(OOP main.cpp DOM/Engine.cpp DOM/Engine.h DOM/DieselEngine.cpp DOM/DieselEngine.h DOM/JetEngine.cpp DOM/JetEngine.h Utilities/RoundedDoublyLinkedList.cpp Utilities/RoundedDoublyLinkedList.h Utilities/Cui.cpp Utilities/Cui.h)

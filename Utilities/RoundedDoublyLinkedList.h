@@ -15,6 +15,7 @@ namespace Utilities{
         struct NodeItem *next = nullptr;
         struct NodeItem *prev = nullptr;
         DOM::Engine* data = nullptr;
+        ~NodeItem();
     } ;
 
     class RoundedDoublyLinkedList {
@@ -22,16 +23,11 @@ namespace Utilities{
         NodeItem *head = nullptr;
         NodeItem *end = nullptr;
     public:
-        explicit RoundedDoublyLinkedList(DOM::Engine* data) {
-            head = new NodeItem;
-            head->next = head;
-            head->prev = head;
-            head->data = data;
-            end = head;
-        };
+        explicit RoundedDoublyLinkedList(DOM::Engine* data);
         void printNodes();
         NodeItem *insertNodeEnd(DOM::Engine* data);
         NodeItem *insertNodeHead(DOM::Engine* data);
+        bool deleteById(std::atomic_uint32_t id);
         double sumEnginesPowers(EngineType engineType);
 
         ~RoundedDoublyLinkedList();
