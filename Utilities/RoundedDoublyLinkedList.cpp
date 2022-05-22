@@ -12,17 +12,12 @@
 namespace Utilities {
 
     void RoundedDoublyLinkedList::printNodes() {
-        if(head== nullptr)
+        if(head == nullptr || head->data == nullptr)
         {
             std::cout << "No data in list" << std::endl;
             return;
         }
         auto tmp = head;
-        if(head->data == nullptr)
-        {
-            std::cout<<"List is empty" << std::endl;
-            return;
-        }
         while (tmp != end) {
             tmp->data->show();
             std::cout << std::endl;
@@ -40,6 +35,7 @@ namespace Utilities {
             end->prev = end;
             end->data = data;
             head = end;
+            return end;
         }
         if(end->data == nullptr)
         {
@@ -65,6 +61,7 @@ namespace Utilities {
             head->prev = head;
             head->data = data;
             end = head;
+            return head;
         }
         if(head->data == nullptr)
         {
@@ -225,13 +222,13 @@ namespace Utilities {
             {
                 dieselEngine = new DOM::DieselEngine();
                 in >> (*dieselEngine);
-                insertNodeEnd(dieselEngine);
+                insertNodeHead(dieselEngine);
             }
             if (info == 2)
             {
                 jetEngine = new DOM::JetEngine();
                 in >> (*jetEngine);
-                insertNodeEnd(jetEngine);
+                insertNodeHead(jetEngine);
             }
             in >> info;
         }
