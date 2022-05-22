@@ -7,10 +7,16 @@
 #include "../DOM/DieselEngine.h"
 #include <iostream>
 #include <initializer_list>
+#include <fstream>
 
 namespace Utilities {
 
     void RoundedDoublyLinkedList::printNodes() {
+        if(head== nullptr)
+        {
+            std::cout << "No data in list" << std::endl;
+            return;
+        }
         auto tmp = head;
         if(head->data == nullptr)
         {
@@ -26,6 +32,15 @@ namespace Utilities {
     }
 
     NodeItem *RoundedDoublyLinkedList::insertNodeEnd(DOM::Engine *data) {
+
+        if(end == nullptr)
+        {
+            end = new NodeItem;
+            end->next = end;
+            end->prev = end;
+            end->data = data;
+            head = end;
+        }
         if(end->data == nullptr)
         {
             end->data = data;
@@ -43,6 +58,14 @@ namespace Utilities {
     }
 
     NodeItem *RoundedDoublyLinkedList::insertNodeHead(DOM::Engine *const data) {
+        if(head == nullptr)
+        {
+            head = new NodeItem;
+            head->next = head;
+            head->prev = head;
+            head->data = data;
+            end = head;
+        }
         if(head->data == nullptr)
         {
             head->data = data;
@@ -63,10 +86,9 @@ namespace Utilities {
         while (head != end) {
             auto tmp = head;
             head = head->next;
-            delete tmp->data;
             delete tmp;
         }
-        delete head;
+        delete end;
     }
 
     double RoundedDoublyLinkedList::sumEnginesPowers(EngineType engineType) {
@@ -140,15 +162,85 @@ namespace Utilities {
         }
     }
 
-    RoundedDoublyLinkedList::RoundedDoublyLinkedList(DOM::Engine *data) {
-        head = new NodeItem;
-        head->next = head;
-        head->prev = head;
-        head->data = data;
-        end = head;
+
+    void RoundedDoublyLinkedList::WriteToFile() {
+        auto tmp = head;
+        if(head->data == nullptr)
+        {
+            std::cout<<"List is empty" << std::endl;
+            return;
+        }
+        std::ofstream out("engine.dat");
+        if (!out.is_open())
+        {
+            std::cout << "Error of open..." << std::endl;
+            return;
+        }
+
+        while (tmp != end) {
+            if (dynamic_cast<DOM::DieselEngine*>(tmp->data) != nullptr)
+            {
+                out << 1 << '\n';
+                out << *((DOM::DieselEngine*)(tmp->data));
+            }
+            if (dynamic_cast<DOM::JetEngine*>(tmp->data) != nullptr)
+            {
+                out << 2 << '\n';
+                out << *((DOM::JetEngine*)(tmp->data));
+            }
+            std::cout << std::endl;
+            tmp = tmp->next;
+        }
+        if (dynamic_cast<DOM::DieselEngine*>(tmp->data) != nullptr)
+        {
+            out << 1 << '\n';
+            out << *((DOM::DieselEngine*)(tmp->data));
+        }
+        if (dynamic_cast<DOM::JetEngine*>(tmp->data) != nullptr)
+        {
+            out << 2 << '\n';
+            out << *((DOM::JetEngine*)(tmp->data));
+        }
+        std::cout << "Saved in engine.dat"<< std::endl;
+        out.close();
+    }
+
+    void RoundedDoublyLinkedList::ReadFromFile() {
+        std::string fileName;
+        std::cout << "File data name(default is engine.dat): ";
+        std::cin >> fileName;
+        std::ifstream in(fileName);
+        if (!in.is_open())
+        {
+            std::cout << "Error of open..." << std::endl;
+            return;
+        }
+        DOM::DieselEngine* dieselEngine;
+        DOM::JetEngine* jetEngine;
+        int info;
+        in >> info;
+        while (!in.eof())
+        {
+            if (info == 1)
+            {
+                dieselEngine = new DOM::DieselEngine();
+                in >> (*dieselEngine);
+                insertNodeEnd(dieselEngine);
+            }
+            if (info == 2)
+            {
+                jetEngine = new DOM::JetEngine();
+                in >> (*jetEngine);
+                insertNodeEnd(jetEngine);
+            }
+            in >> info;
+        }
+        in.close();
+        std::cout << "Loaded from file '" << fileName << "'\n";
     }
 
     NodeItem::~NodeItem() {
-        delete data;
+        if(data!= nullptr)
+            delete data;
     }
 } // Utilities

@@ -8,6 +8,7 @@
 
 namespace DOM {
     std::atomic_uint32_t Engine::current_id;
+
     Engine::Engine() :
             _id(current_id++), _speed(0),
             _rotation_frequency(0), _horsepower(0),
@@ -75,14 +76,27 @@ namespace DOM {
     }
 
     Engine::Engine(Engine &&other) noexcept:
-    _id(other._id),  _emissions(other._emissions),
-    _horsepower(other._horsepower), _volume(other._volume),
-    _rotation_frequency(other._rotation_frequency), _speed(other._speed){
+            _id(other._id), _emissions(other._emissions),
+            _horsepower(other._horsepower), _volume(other._volume),
+            _rotation_frequency(other._rotation_frequency), _speed(other._speed) {
         other._id = 0;
         other._speed = 0;
         other._rotation_frequency = 0;
         other._volume = 0;
         other._horsepower = 0;
         other._emissions = 0;
+    }
+
+    std::ostream &operator<<(std::ostream &os, const Engine &engine) {
+        os << engine._id << std::endl << engine._emissions << std::endl << engine._volume
+           << std::endl << engine._speed << std::endl << engine._horsepower << std::endl
+           << engine._rotation_frequency << std::endl;
+        return os;
+    }
+
+    std::istream &operator>>(std::istream &is, Engine &engine) {
+        is >> engine._id >> engine._emissions >> engine._volume
+        >> engine._speed >> engine._horsepower >> engine._rotation_frequency;
+        return is;
     }
 } // DOM

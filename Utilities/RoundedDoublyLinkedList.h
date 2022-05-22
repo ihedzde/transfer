@@ -23,8 +23,9 @@ namespace Utilities{
         NodeItem *head = nullptr;
         NodeItem *end = nullptr;
     public:
-        explicit RoundedDoublyLinkedList(DOM::Engine* data);
         void printNodes();
+        void WriteToFile();
+        void ReadFromFile();
         NodeItem *insertNodeEnd(DOM::Engine* data);
         NodeItem *insertNodeHead(DOM::Engine* data);
         bool deleteById(std::atomic_uint32_t id);

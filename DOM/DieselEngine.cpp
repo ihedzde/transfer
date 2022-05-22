@@ -38,4 +38,15 @@ namespace DOM {
                                                                                      horsepower, rotationFrequency),
                                                                               _cylinders_count(cylindersCount),
                                                                               _cylinder_diameter(cylinderDiameter) {}
+
+    std::ostream &operator<<(std::ostream &os, const DieselEngine &engine) {
+        os << static_cast<const DOM::Engine &>(engine) << engine._cylinders_count << std::endl
+        << engine._cylinder_diameter << std::endl;
+        return os;
+    }
+
+    std::istream &operator>>(std::istream &is, DieselEngine &engine) {
+        is >> static_cast<DOM::Engine&>(engine) >> engine._cylinders_count >> engine._cylinder_diameter;
+        return is;
+    }
 } // DOM

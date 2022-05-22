@@ -15,6 +15,8 @@ namespace DOM {
         int _mass_kg{};
         double _trust_to_weight_ratio{};
     public:
+        friend std::ostream &operator<<(std::ostream &os, const JetEngine &engine);
+        friend std::istream &operator>>(std::istream &is, JetEngine &engine);
         JetEngine();
 
         JetEngine(double emissions, double volume, double speed, double horsepower, int rotationFrequency,

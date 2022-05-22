@@ -2,6 +2,8 @@
 // Created by Ivan Hedz on 16.04.2022.
 //
 #include <atomic>
+#include <ostream>
+
 #ifndef OOP_ENGINE_H
 #define OOP_ENGINE_H
 namespace DOM {
@@ -21,6 +23,8 @@ namespace DOM {
         Engine(double emissions, double volume, double speed, double horsepower, int rotationFrequency);
 
     public:
+        friend std::ostream &operator<<(std::ostream &os, const Engine &engine);
+        friend std::istream &operator>>(std::istream &is, Engine &engine);
         [[nodiscard]] double getHorsepower() const;
 
         void setHorsepower(double horsepower);

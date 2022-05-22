@@ -9,7 +9,7 @@ using namespace DOM;
 using namespace Utilities;
 
 int main() {
-    auto engineList = CUI::setUpMockData();
+    auto *engineList = new RoundedDoublyLinkedList();
     char variant;
     do {
         variant = CUI::printMenu();
@@ -35,6 +35,15 @@ int main() {
                 std::cin >> id;
                 if(engineList->deleteById(id))
                     std::cout << "Deleted" << std::endl;
+                break;
+            case '7':
+                engineList->WriteToFile();
+                break;
+            case '8':
+                engineList->ReadFromFile();
+                break;
+            case '9':
+                CUI::setUpMockData(engineList);
                 break;
         }
     } while (variant != 'e');

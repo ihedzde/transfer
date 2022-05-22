@@ -13,6 +13,8 @@ namespace DOM {
         int _cylinders_count;
         double _cylinder_diameter;
     public:
+        friend std::ostream &operator<<(std::ostream &os, const DieselEngine &engine);
+        friend std::istream &operator>>(std::istream &is, DieselEngine &engine);
         DieselEngine();
 
         DieselEngine(double emissions, double volume, double speed, double horsepower, int rotationFrequency,

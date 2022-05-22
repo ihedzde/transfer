@@ -13,9 +13,7 @@ namespace Utilities {
     class CUI {
     public:
         static char printMenu();
-
-        static RoundedDoublyLinkedList *setUpMockData();
-
+        static void setUpMockData(RoundedDoublyLinkedList * engineList);
         static DOM::JetEngine *initNewJet();
 
         static DOM::DieselEngine *initNewDiesel();

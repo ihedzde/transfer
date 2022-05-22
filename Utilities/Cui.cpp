@@ -16,22 +16,12 @@ namespace Utilities {
         std::cout << "4. Print sum of diesel engines" << std::endl;
         std::cout << "5. Print sum of jet engines" << std::endl;
         std::cout << "6. Delete by id" << std::endl;
+        std::cout << "7. Load in the file" << std::endl;
+        std::cout << "8. Load out of the file" << std::endl;
+        std::cout << "9. Load mock data" <<std::endl;
         std::cin >> variant;
         std::cout << "\r" << std::endl;
         return variant;
-    }
-
-    RoundedDoublyLinkedList *setUpMockData() {
-        DOM::Engine *jetEngine = new DOM::JetEngine(2.2, 1.1, 42.2, 241, 22,
-                                                    24, 53535, 31, 21);
-        DOM::Engine *dieselEngine = new DOM::DieselEngine(2.2, 1.1, 42.2, 203132, 123,
-                                                          24, 53535);
-        DOM::Engine *dieselEngine2 = new DOM::DieselEngine(2.2, 1.1, 42.2, 2042, 123,
-                                                           24, 53535);
-        auto engineList = new RoundedDoublyLinkedList(jetEngine);
-        engineList->insertNodeHead(dieselEngine);
-        engineList->insertNodeHead(dieselEngine2);
-        return engineList;
     }
 
     DOM::JetEngine *CUI::initNewJet() {
@@ -95,17 +85,16 @@ namespace Utilities {
                                      cylinders_count, cylinder_diameter);
     }
 
-    RoundedDoublyLinkedList * CUI::setUpMockData() {
+    void CUI::setUpMockData(RoundedDoublyLinkedList * engineList) {
         DOM::Engine *jetEngine = new DOM::JetEngine(2.2, 1.1, 42.2, 241, 22,
                                                24, 53535, 31, 21);
         DOM::Engine *dieselEngine = new DOM::DieselEngine(2.2, 1.1, 42.2, 203132, 123,
                                                      24, 53535);
         DOM::Engine *dieselEngine2 = new DOM::DieselEngine(2.2, 1.1, 42.2, 2042, 123,
                                                       24, 53535);
-        auto engineList = new RoundedDoublyLinkedList(jetEngine);
+        engineList->insertNodeHead(jetEngine);
         engineList->insertNodeHead(dieselEngine);
         engineList->insertNodeHead(dieselEngine2);
-        return engineList;
     }
 
 }
