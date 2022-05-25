@@ -9,7 +9,7 @@
 namespace DOM {
 
     class Engine {
-        static std::atomic_uint32_t current_id;//Static ID for generating unique one
+        static int current_id;//Static ID for generating unique one
     protected:
         int _id{};
         double _emissions{};

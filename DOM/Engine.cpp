@@ -7,7 +7,7 @@
 #include <atomic>
 
 namespace DOM {
-    std::atomic_uint32_t Engine::current_id;
+    int Engine::current_id;
 
     Engine::Engine() :
             _id(current_id++), _speed(0),

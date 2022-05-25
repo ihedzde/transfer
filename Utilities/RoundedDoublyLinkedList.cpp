@@ -6,12 +6,11 @@
 #include "../DOM/JetEngine.h"
 #include "../DOM/DieselEngine.h"
 #include <iostream>
-#include <initializer_list>
 #include <fstream>
 
 namespace Utilities {
 
-    void RoundedDoublyLinkedList::printNodes() {
+    void RoundedDoublyLinkedList::printNodes() const{
         if(head == nullptr || head->data == nullptr)
         {
             std::cout << "No data in list" << std::endl;
@@ -88,7 +87,7 @@ namespace Utilities {
         delete end;
     }
 
-    double RoundedDoublyLinkedList::sumEnginesPowers(EngineType engineType) {
+    double RoundedDoublyLinkedList::sumEnginesPowers(EngineType engineType) const {
         auto sum = 0;
         auto tmp = head;
         if(head->data == nullptr)
