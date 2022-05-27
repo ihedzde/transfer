@@ -1,7 +1,6 @@
 //
 // Created by Ivan Hedz on 16.04.2022.
 //
-#include <atomic>
 #include <ostream>
 
 #ifndef OOP_ENGINE_H

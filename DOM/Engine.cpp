@@ -4,7 +4,6 @@
 
 #include "Engine.h"
 #include "iostream"
-#include <atomic>
 
 namespace DOM {
     int Engine::current_id;
