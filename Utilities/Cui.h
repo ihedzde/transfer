@@ -15,7 +15,7 @@ namespace Utilities {
         static char printMenu();
         static void setUpMockData(RoundedDoublyLinkedList * engineList);
         static DOM::JetEngine *initNewJet();
-        static void RunActions(RoundedDoublyLinkedList * engineList);
+        static void RunActions(RoundedDoublyLinkedList *& engineList);
         static DOM::DieselEngine *initNewDiesel();
     };
 } // Utilities

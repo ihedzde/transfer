@@ -98,7 +98,7 @@ namespace Utilities {
         engineList->insertNodeHead(dieselEngine2);
     }
 
-    void CUI::RunActions(RoundedDoublyLinkedList * engineList) {
+    void CUI::RunActions(RoundedDoublyLinkedList *& engineList) {
         char variant;
         do {
             variant = CUI::printMenu();
