@@ -19,6 +19,7 @@ namespace Utilities {
         std::cout << "7. Load in the file" << std::endl;
         std::cout << "8. Load out of the file" << std::endl;
         std::cout << "9. Load mock data" <<std::endl;
+        std::cout << "c. Clean data from list" <<std::endl;
         std::cin >> variant;
         std::cout << "\r" << std::endl;
         return variant;
@@ -132,6 +133,10 @@ namespace Utilities {
                     break;
                 case '9':
                     CUI::setUpMockData(engineList);
+                    break;
+                case 'c':
+                    delete engineList;
+                    engineList = new RoundedDoublyLinkedList();
                     break;
             }
         } while (variant != 'e');
