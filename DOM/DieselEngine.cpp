@@ -25,28 +25,29 @@ namespace DOM {
 
     void DieselEngine::show() const {
         Engine::show();
-        std::cout << "Cylinders count: " << _cylinders_count << ";" << std::endl;
-        std::cout << "Cylinder diameter: " << _cylinder_diameter << " mm;" << std::endl;
+        cout << "Cylinders count: " << _cylinders_count << ";" << endl;
+        cout << "Cylinder diameter: " << _cylinder_diameter << " mm;" << endl;
     }
 
     DieselEngine::DieselEngine() : Engine(), _cylinders_count(0),
-                                   _cylinder_diameter(0) {
-    }
+                                   _cylinder_diameter(0) {}
 
-    DieselEngine::DieselEngine(double emissions, double volume, double speed, double horsepower, int rotationFrequency,
-                               int cylindersCount, double cylinderDiameter) : Engine(emissions, volume, speed,
+    DieselEngine::DieselEngine(string manufacturer, double emissions, double volume, double speed, double horsepower,
+                               int rotationFrequency,
+                               int cylindersCount, double cylinderDiameter) : Engine(manufacturer, emissions, volume,
+                                                                                     speed,
                                                                                      horsepower, rotationFrequency),
                                                                               _cylinders_count(cylindersCount),
                                                                               _cylinder_diameter(cylinderDiameter) {}
 
-    std::ostream &operator<<(std::ostream &os, const DieselEngine &engine) {
-        os << static_cast<const DOM::Engine &>(engine) << engine._cylinders_count << std::endl
-        << engine._cylinder_diameter << std::endl;
+    ostream &operator<<(ostream &os, const DieselEngine &engine) {
+        os << static_cast<const DOM::Engine &>(engine) << engine._cylinders_count << endl
+           << engine._cylinder_diameter << endl;
         return os;
     }
 
-    std::istream &operator>>(std::istream &is, DieselEngine &engine) {
-        is >> static_cast<DOM::Engine&>(engine) >> engine._cylinders_count >> engine._cylinder_diameter;
+    istream &operator>>(istream &is, DieselEngine &engine) {
+        is >> static_cast<DOM::Engine &>(engine) >> engine._cylinders_count >> engine._cylinder_diameter;
         return is;
     }
 } // DOM

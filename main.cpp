@@ -4,8 +4,6 @@
 #include "DOM/DieselEngine.h"
 #include "Utilities/RoundedDoublyLinkedList.h"
 #include "Utilities/Cui.h"
-
-using namespace DOM;
 using namespace Utilities;
 
 int main() {

@@ -6,6 +6,7 @@
 #ifndef OOP_ROUNDEDDOUBLYLINKEDLIST_H
 #define OOP_ROUNDEDDOUBLYLINKEDLIST_H
 namespace Utilities{
+    using namespace std;
     enum EngineType{
         JetEngine,
         DieselEngine
@@ -24,13 +25,13 @@ namespace Utilities{
         NodeItem *end = nullptr;
     public:
         void printNodes() const;
-        void WriteToFile();
-        void ReadFromFile();
+        void writeToFile();
+        void readFromFile();
         NodeItem *insertNodeEnd(DOM::Engine* data);
         NodeItem *insertNodeHead(DOM::Engine* data);
-        bool deleteById(std::atomic_uint32_t id);
+        bool deleteById(int id);
         double sumEnginesPowers(EngineType engineType) const;
-
+        bool isListEmpty() const;
         ~RoundedDoublyLinkedList();
     };
 } // Utilities

@@ -10,6 +10,7 @@
 #define OOP_CUI_H
 
 namespace Utilities {
+    using namespace std;
     class CUI {
     public:
         static char printMenu();

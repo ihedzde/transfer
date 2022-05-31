@@ -9,28 +9,29 @@ namespace DOM {
     int Engine::current_id;
 
     Engine::Engine() :
-            _id(current_id++), _speed(0),
+            _id(current_id++), _manufacturer(""), _speed(0),
             _rotation_frequency(0), _horsepower(0),
-            _volume(0), _emissions(0) {
-    }
+            _volume(0), _emissions(0) {}
 
-    Engine::Engine(double emissions, double volume, double speed, double horsepower, int rotationFrequency)
-            : _id(current_id++), _emissions(emissions), _volume(volume), _speed(speed), _horsepower(horsepower),
-              _rotation_frequency(rotationFrequency) {}
+    Engine::Engine(string manufacturer, double emissions, double volume, double speed, double horsepower,
+                   int rotationFrequency)
+            : _id(current_id++), _manufacturer(manufacturer), _emissions(emissions), _volume(volume), _speed(speed),
+              _horsepower(horsepower),
+              _rotation_frequency(rotationFrequency){}
 
     Engine::~Engine() = default;
 
     void Engine::show() const {
-        std::cout << "ID: " << _id << std::endl;
-        std::cout << "Fuel tank volumes: " << _volume << " liters;" << std::endl;
-        std::cout << "Speed: " << _speed << " km/h;" << std::endl;
-        std::cout << "CO₂ emissions: " << _emissions << " kg;" << std::endl;
-        std::cout << "Horsepower: " << _horsepower << " 🐴;" << std::endl;
-        std::cout << "Rotation frequency: " << _rotation_frequency << " RPM;" << std::endl;
-
+        cout << "ID: " << _id << endl;
+        cout << "Fuel tank volumes: " << _volume << " liters;" << endl;
+        cout << "Speed: " << _speed << " km/h;" << endl;
+        cout << "CO₂ emissions: " << _emissions << " kg;" << endl;
+        cout << "Horsepower: " << _horsepower << " 🐴;" << endl;
+        cout << "Rotation frequency: " << _rotation_frequency << " RPM;" << endl;
+        cout << "Manufacturer: " << _manufacturer << endl;
     }
 
-    [[maybe_unused]] int Engine::getID() const {
+    int Engine::getID() const {
         return _id;
     }
 
@@ -74,28 +75,24 @@ namespace DOM {
         _rotation_frequency = rotationFrequency;
     }
 
-    Engine::Engine(Engine &&other) noexcept:
-            _id(other._id), _emissions(other._emissions),
-            _horsepower(other._horsepower), _volume(other._volume),
-            _rotation_frequency(other._rotation_frequency), _speed(other._speed) {
-        other._id = 0;
-        other._speed = 0;
-        other._rotation_frequency = 0;
-        other._volume = 0;
-        other._horsepower = 0;
-        other._emissions = 0;
-    }
-
-    std::ostream &operator<<(std::ostream &os, const Engine &engine) {
-        os << engine._id << std::endl << engine._emissions << std::endl << engine._volume
-           << std::endl << engine._speed << std::endl << engine._horsepower << std::endl
-           << engine._rotation_frequency << std::endl;
+    ostream &operator<<(ostream &os, const Engine &engine) {
+        os << engine._id << endl << engine._manufacturer << endl << engine._emissions << endl << engine._volume
+           << endl << engine._speed << endl << engine._horsepower << endl
+           << engine._rotation_frequency << endl;
         return os;
     }
 
-    std::istream &operator>>(std::istream &is, Engine &engine) {
-        is >> engine._id >> engine._emissions >> engine._volume
-        >> engine._speed >> engine._horsepower >> engine._rotation_frequency;
+    istream &operator>>(istream &is, Engine &engine) {
+        is >> engine._id >> engine._manufacturer >> engine._emissions >> engine._volume
+           >> engine._speed >> engine._horsepower >> engine._rotation_frequency;
         return is;
+    }
+
+    const string &Engine::getManufacturer() const {
+        return _manufacturer;
+    }
+
+    void Engine::setManufacturer(const string &manufacturer) {
+        _manufacturer = manufacturer;
     }
 } // DOM

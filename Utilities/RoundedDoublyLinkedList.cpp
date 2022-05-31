@@ -9,26 +9,26 @@
 #include <fstream>
 
 namespace Utilities {
+    bool RoundedDoublyLinkedList::isListEmpty() const {
+        return head == end || head->data == nullptr;
+    }
 
-    void RoundedDoublyLinkedList::printNodes() const{
-        if(head == nullptr || head->data == nullptr)
-        {
-            std::cout << "No data in list" << std::endl;
+    void RoundedDoublyLinkedList::printNodes() const {
+        if (isListEmpty()) {
+            cout << "No data in list" << endl;
             return;
         }
         auto tmp = head;
         while (tmp != end) {
             tmp->data->show();
-            std::cout << std::endl;
+            cout << endl;
             tmp = tmp->next;
         }
         tmp->data->show();
     }
 
     NodeItem *RoundedDoublyLinkedList::insertNodeEnd(DOM::Engine *data) {
-
-        if(end == nullptr)
-        {
+        if (end == nullptr) {
             end = new NodeItem;
             end->next = end;
             end->prev = end;
@@ -36,10 +36,9 @@ namespace Utilities {
             head = end;
             return end;
         }
-        if(end->data == nullptr)
-        {
+        if (end->data == nullptr) {
             end->data = data;
-            return  end;
+            return end;
         }
         auto new_node = new NodeItem;
         new_node->next = head;
@@ -53,8 +52,7 @@ namespace Utilities {
     }
 
     NodeItem *RoundedDoublyLinkedList::insertNodeHead(DOM::Engine *const data) {
-        if(head == nullptr)
-        {
+        if (head == nullptr) {
             head = new NodeItem;
             head->next = head;
             head->prev = head;
@@ -62,10 +60,9 @@ namespace Utilities {
             end = head;
             return head;
         }
-        if(head->data == nullptr)
-        {
+        if (head->data == nullptr) {
             head->data = data;
-            return  head;
+            return head;
         }
         auto new_node = new NodeItem;
         new_node->next = head;
@@ -88,13 +85,12 @@ namespace Utilities {
     }
 
     double RoundedDoublyLinkedList::sumEnginesPowers(EngineType engineType) const {
-        auto sum = 0;
-        auto tmp = head;
-        if(head->data == nullptr)
-        {
-            std::cout<<"List is empty" << std::endl;
+        if (head->data == nullptr) {
+            cout << "List is empty" << endl;
             return 0;
         }
+        auto sum = 0;
+        auto tmp = head;
         switch (engineType) {
             case EngineType::DieselEngine:
                 while (tmp != end) {
@@ -119,17 +115,14 @@ namespace Utilities {
         }
     }
 
-    bool RoundedDoublyLinkedList::deleteById(std::atomic_uint32_t id) {
-
-        auto tmp = head;
-        if(head == end && head->data == nullptr)
-        {
-            std::cout<< "List is empty";
+    bool RoundedDoublyLinkedList::deleteById(int id) {
+        if (isListEmpty()) {
+            cout << "List is empty";
             return false;
         }
+        auto tmp = head;
         if (tmp->data->getID() == id) {
-            if(head == end)
-            {
+            if (head == end) {
                 delete tmp->data;
                 tmp->data = nullptr;
                 return true;
@@ -159,72 +152,65 @@ namespace Utilities {
     }
 
 
-    void RoundedDoublyLinkedList::WriteToFile() {
-        auto tmp = head;
-        if(head->data == nullptr)
-        {
-            std::cout<<"List is empty" << std::endl;
+    void RoundedDoublyLinkedList::writeToFile() {
+        if (isListEmpty()) {
+            cout << "List is empty" << endl;
             return;
         }
-        std::ofstream out("engine.dat");
-        if (!out.is_open())
-        {
-            std::cout << "Error of open..." << std::endl;
+        string filename;
+        auto tmp = head;
+        cout << "Input please file name:" << endl;
+        cin >> filename;
+        ofstream out(filename);
+        if (!out.is_open()) {
+            cout << "Error of open..." << endl;
             return;
         }
 
         while (tmp != end) {
-            if (dynamic_cast<DOM::DieselEngine*>(tmp->data) != nullptr)
-            {
+            if (dynamic_cast<DOM::DieselEngine *>(tmp->data) != nullptr) {
                 out << 1 << '\n';
-                out << *((DOM::DieselEngine*)(tmp->data));
+                out << *((DOM::DieselEngine *) (tmp->data));
             }
-            if (dynamic_cast<DOM::JetEngine*>(tmp->data) != nullptr)
-            {
+            if (dynamic_cast<DOM::JetEngine *>(tmp->data) != nullptr) {
                 out << 2 << '\n';
-                out << *((DOM::JetEngine*)(tmp->data));
+                out << *((DOM::JetEngine *) (tmp->data));
             }
-            std::cout << std::endl;
+            cout << endl;
             tmp = tmp->next;
         }
-        if (dynamic_cast<DOM::DieselEngine*>(tmp->data) != nullptr)
-        {
+        if (dynamic_cast<DOM::DieselEngine *>(tmp->data) != nullptr) {
             out << 1 << '\n';
-            out << *((DOM::DieselEngine*)(tmp->data));
+            out << *((DOM::DieselEngine *) (tmp->data));
         }
-        if (dynamic_cast<DOM::JetEngine*>(tmp->data) != nullptr)
-        {
+        if (dynamic_cast<DOM::JetEngine *>(tmp->data) != nullptr) {
             out << 2 << '\n';
-            out << *((DOM::JetEngine*)(tmp->data));
+            out << *((DOM::JetEngine *) (tmp->data));
         }
-        std::cout << "Saved in engine.dat"<< std::endl;
+        cout << "Saved in " << filename << endl;
         out.close();
     }
 
-    void RoundedDoublyLinkedList::ReadFromFile() {
-        std::string fileName;
-        std::cout << "File data name(default is engine.dat): ";
-        std::cin >> fileName;
-        std::ifstream in(fileName);
-        if (!in.is_open())
-        {
-            std::cout << "Error of open..." << std::endl;
+    void RoundedDoublyLinkedList::readFromFile() {
+        string fileName;
+        cout << "Enter file data name: ";
+        cin >> fileName;
+        ifstream in(fileName);
+        if (!in.is_open()) {
+            cout << "Error of open..." << endl;
             return;
         }
-        DOM::DieselEngine* dieselEngine;
-        DOM::JetEngine* jetEngine;
+        DOM::DieselEngine *dieselEngine;
+        DOM::JetEngine *jetEngine;
         int info;
         in >> info;
-        while (!in.eof())
-        {
-            if (info == 1)
-            {
+        while (!in.eof()) {
+            if (info == 1) {
                 dieselEngine = new DOM::DieselEngine();
                 in >> (*dieselEngine);
                 insertNodeHead(dieselEngine);
             }
-            if (info == 2)
-            {
+            if (info == 2) {
                 jetEngine = new DOM::JetEngine();
                 in >> (*jetEngine);
                 insertNodeHead(jetEngine);
@@ -232,11 +218,12 @@ namespace Utilities {
             in >> info;
         }
         in.close();
-        std::cout << "Loaded from file '" << fileName << "'\n";
+        cout << "Loaded from file '" << fileName << "'\n";
     }
 
+
     NodeItem::~NodeItem() {
-        if(data!= nullptr)
+        if (data != nullptr)
             delete data;
     }
 } // Utilities

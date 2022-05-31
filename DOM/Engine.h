@@ -6,49 +6,58 @@
 #ifndef OOP_ENGINE_H
 #define OOP_ENGINE_H
 namespace DOM {
+    using namespace std;
 
     class Engine {
         static int current_id;//Static ID for generating unique one
     protected:
-        int _id{};
-        double _emissions{};
-        double _volume{};
-        double _speed{};
-        double _horsepower{};
-        int _rotation_frequency{};
+        int _id;
+        double _emissions;
+        double _volume;
+        double _speed;
+        double _horsepower;
+        int _rotation_frequency;
+        string _manufacturer;
 
         Engine();
-        Engine(Engine&& other) noexcept;
-        Engine(double emissions, double volume, double speed, double horsepower, int rotationFrequency);
+
+        Engine(string manufacturer, double emissions, double volume, double speed, double horsepower,
+               int rotationFrequency);
 
     public:
-        friend std::ostream &operator<<(std::ostream &os, const Engine &engine);
-        friend std::istream &operator>>(std::istream &is, Engine &engine);
-        [[nodiscard]] double getHorsepower() const;
+        virtual ~Engine();
+
+        friend ostream &operator<<(ostream &os, const Engine &engine);
+
+        friend istream &operator>>(istream &is, Engine &engine);
+
+        const string &getManufacturer() const;
+
+        void setManufacturer(const string &manufacturer);
+
+        double getHorsepower() const;
 
         void setHorsepower(double horsepower);
 
-        [[nodiscard]] int getRotationFrequency() const;
+        int getRotationFrequency() const;
 
         void setRotationFrequency(int rotationFrequency);
 
-        [[nodiscard]] double getSpeed() const;
+        double getSpeed() const;
 
         void setSpeed(double speed);
 
-        [[nodiscard]] double getVolume() const;
+        double getVolume() const;
 
         void setVolume(double volume);
 
-        [[nodiscard]] double getEmissions() const;
+        double getEmissions() const;
 
         void setEmissions(double kg);
 
-        [[maybe_unused]] [[nodiscard]] int getID() const;
+        int getID() const;
 
         virtual void show() const;
-
-        virtual ~Engine();
     };
 } // DOM
 

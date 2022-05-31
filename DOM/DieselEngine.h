@@ -7,17 +7,17 @@
 #define OOP_DIESELENGINE_H
 
 namespace DOM {
-
+    using namespace std;
     class DieselEngine : public Engine {
     private:
         int _cylinders_count;
         double _cylinder_diameter;
     public:
-        friend std::ostream &operator<<(std::ostream &os, const DieselEngine &engine);
-        friend std::istream &operator>>(std::istream &is, DieselEngine &engine);
+        friend ostream &operator<<(ostream &os, const DieselEngine &engine);
+        friend istream &operator>>(istream &is, DieselEngine &engine);
         DieselEngine();
 
-        DieselEngine(double emissions, double volume, double speed, double horsepower, int rotationFrequency,
+        DieselEngine(string manufacturer, double emissions, double volume, double speed, double horsepower, int rotationFrequency,
                      int cylindersCount, double cylinderDiameter);
 
         [[nodiscard]] int getCylindersCount() const;

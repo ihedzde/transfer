@@ -7,39 +7,44 @@
 #define OOP_JETENGINE_H
 
 namespace DOM {
+    using namespace std;
 
     class JetEngine : public Engine {
     private:
-        double _impulse{};
-        int _effective_exhaust_velocity{};
-        int _mass_kg{};
-        double _trust_to_weight_ratio{};
+        double _impulse;
+        int _effective_exhaust_velocity;
+        int _mass_kg;
+        double _trust_to_weight_ratio;
     public:
-        friend std::ostream &operator<<(std::ostream &os, const JetEngine &engine);
-        friend std::istream &operator>>(std::istream &is, JetEngine &engine);
         JetEngine();
 
-        JetEngine(double emissions, double volume, double speed, double horsepower, int rotationFrequency,
+
+        JetEngine(string manufacturer, double emissions, double volume, double speed, double horsepower,
+                  int rotationFrequency,
                   double impulse, int effectiveExhaustVelocity, int massKg, double trustToWeightRatio);
 
-        [[nodiscard]] double getImpulse() const;
+        friend ostream &operator<<(ostream &os, const JetEngine &engine);
+
+        friend istream &operator>>(istream &is, JetEngine &engine);
+
+        double getImpulse() const;
 
         void setImpulse(double impulse);
 
-        [[nodiscard]] int getEffectiveExhaustVelocity() const;
+        int getEffectiveExhaustVelocity() const;
 
         void setEffectiveExhaustVelocity(int effectiveExhaustVelocity);
 
-        [[nodiscard]] int getMassKg() const;
+        int getMassKg() const;
 
         void setMassKg(int massKg);
 
-        [[nodiscard]] double getTrustToWeightRatio() const;
+        double getTrustToWeightRatio() const;
 
         void setTrustToWeightRatio(double trustToWeightRatio);
+
         void show() const override;
     };
-
 } // DOM
 
 #endif //OOP_JETENGINE_H
