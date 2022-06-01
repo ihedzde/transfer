@@ -18,7 +18,6 @@ namespace DOM {
     public:
         JetEngine();
 
-
         JetEngine(string manufacturer, double emissions, double volume, double speed, double horsepower,
                   int rotationFrequency,
                   double impulse, int effectiveExhaustVelocity, int massKg, double trustToWeightRatio);

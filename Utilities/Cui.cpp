@@ -129,6 +129,8 @@ namespace Utilities {
                     cin >> id;
                     if (engineList->deleteById(id))
                         cout << "Deleted" << endl;
+                    else
+                        cout << "Not found by id" << endl;
                     break;
                 case '7':
                     engineList->writeToFile();

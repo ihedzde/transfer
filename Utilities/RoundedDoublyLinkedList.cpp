@@ -85,7 +85,7 @@ namespace Utilities {
     }
 
     double RoundedDoublyLinkedList::sumEnginesPowers(EngineType engineType) const {
-        if (head->data == nullptr) {
+        if (isListEmpty()) {
             cout << "List is empty" << endl;
             return 0;
         }
