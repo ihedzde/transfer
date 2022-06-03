@@ -220,7 +220,7 @@ namespace Utilities {
             cout << "Loaded from file '" << fileName << "'\n";
         }
         catch (exception &e) {
-            cout << "Error of open..." << endl;
+            cout << "Error to open " << fileName << endl;
         }
         in.close();
     }
