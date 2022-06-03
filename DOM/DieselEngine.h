@@ -20,11 +20,11 @@ namespace DOM {
         DieselEngine(string manufacturer, double emissions, double volume, double speed, double horsepower, int rotationFrequency,
                      int cylindersCount, double cylinderDiameter);
 
-        [[nodiscard]] int getCylindersCount() const;
+        int getCylindersCount() const;
 
         void setCylindersCount(int cylindersCount);
 
-        [[nodiscard]] double getCylinderDiameter() const;
+        double getCylinderDiameter() const;
 
         void setCylinderDiameter(double cylinderDiameter);
 

@@ -196,29 +196,33 @@ namespace Utilities {
         cout << "Enter file data name: ";
         cin >> fileName;
         ifstream in(fileName);
-        if (!in.is_open()) {
-            cout << "Error of open..." << endl;
-            return;
-        }
-        DOM::DieselEngine *dieselEngine;
-        DOM::JetEngine *jetEngine;
-        int info;
-        in >> info;
-        while (!in.eof()) {
-            if (info == 1) {
-                dieselEngine = new DOM::DieselEngine();
-                in >> (*dieselEngine);
-                insertNodeHead(dieselEngine);
+        try {
+            if (!in.is_open()) {
+                throw exception();
             }
-            if (info == 2) {
-                jetEngine = new DOM::JetEngine();
-                in >> (*jetEngine);
-                insertNodeHead(jetEngine);
-            }
+            DOM::DieselEngine *dieselEngine;
+            DOM::JetEngine *jetEngine;
+            int info;
             in >> info;
+            while (!in.eof()) {
+                if (info == 1) {
+                    dieselEngine = new DOM::DieselEngine();
+                    in >> (*dieselEngine);
+                    insertNodeHead(dieselEngine);
+                }
+                if (info == 2) {
+                    jetEngine = new DOM::JetEngine();
+                    in >> (*jetEngine);
+                    insertNodeHead(jetEngine);
+                }
+                in >> info;
+            }
+            cout << "Loaded from file '" << fileName << "'\n";
+        }
+        catch (exception &e) {
+            cout << "Error of open..." << endl;
         }
         in.close();
-        cout << "Loaded from file '" << fileName << "'\n";
     }
 
 
