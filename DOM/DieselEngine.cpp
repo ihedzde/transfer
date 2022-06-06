@@ -3,7 +3,6 @@
 //
 
 #include "DieselEngine.h"
-#include "iostream"
 
 namespace DOM {
     int DieselEngine::getCylindersCount() const {

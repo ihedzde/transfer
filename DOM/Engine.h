@@ -1,10 +1,11 @@
 //
 // Created by Ivan Hedz on 16.04.2022.
 //
-#include <ostream>
-
 #ifndef OOP_ENGINE_H
 #define OOP_ENGINE_H
+#include <ostream>
+#include "iostream"
+#include "string"
 namespace DOM {
     using namespace std;
 
