@@ -1,10 +1,11 @@
 //
 // Created by Ivan Hedz on 16.04.2022.
 //
-#include "iostream"
-#include "../DOM/Engine.h"
+
 #ifndef OOP_ROUNDEDDOUBLYLINKEDLIST_H
 #define OOP_ROUNDEDDOUBLYLINKEDLIST_H
+#include "iostream"
+#include "../DOM/Engine.h"
 namespace Utilities{
     using namespace std;
     enum EngineType{

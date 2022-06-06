@@ -1,13 +1,14 @@
 //
 // Created by Ivan Hedz on 17.04.2022.
 //
+
+#ifndef OOP_CUI_H
+#define OOP_CUI_H
+
 #include "iostream"
 #include "../DOM/JetEngine.h"
 #include "../DOM/DieselEngine.h"
 #include "RoundedDoublyLinkedList.h"
-
-#ifndef OOP_CUI_H
-#define OOP_CUI_H
 
 namespace Utilities {
     using namespace std;
