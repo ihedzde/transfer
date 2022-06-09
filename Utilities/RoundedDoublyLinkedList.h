@@ -6,6 +6,10 @@
 #define OOP_ROUNDEDDOUBLYLINKEDLIST_H
 #include "iostream"
 #include "../DOM/Engine.h"
+#include "../DOM/JetEngine.h"
+#include "../DOM/DieselEngine.h"
+#include <iostream>
+#include <fstream>
 namespace Utilities{
     using namespace std;
     enum EngineType{

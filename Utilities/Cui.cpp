@@ -92,15 +92,18 @@ namespace Utilities {
     }
 
     void CUI::setUpMockData(RoundedDoublyLinkedList *engineList) {
-        DOM::Engine *jetEngine = new DOM::JetEngine("Tesla", 2.2, 1.1, 42.2, 241, 22,
+        DOM::Engine *jetEngine = new DOM::JetEngine("Tesla", 1993.24, 42.2, 422.2, 123, 1532,
                                                     24, 304, 31, 21);
-        DOM::Engine *dieselEngine = new DOM::DieselEngine("Jeep", 2.2, 1.1, 42.2, 203132, 123,
+        DOM::Engine *dieselEngine = new DOM::DieselEngine("Jeep", 53.3, 2.4, 42.2, 23, 132,
                                                           24, 2492);
-        DOM::Engine *dieselEngine2 = new DOM::DieselEngine("Honda", 2.2, 1.1, 42.2, 2042, 123,
+        DOM::Engine *dieselEngine2 = new DOM::DieselEngine("Honda", 23.2, 3.3, 36, 12, 231,
+                                                           24, 53535);
+        DOM::Engine *dieselEngine3 = new DOM::DieselEngine("Leower", 494.2, 4.2, 29.3, 42, 424,
                                                            24, 53535);
         engineList->insertNodeHead(jetEngine);
         engineList->insertNodeHead(dieselEngine);
         engineList->insertNodeHead(dieselEngine2);
+        engineList->insertNodeHead(dieselEngine3);
     }
 
     void CUI::RunActions(RoundedDoublyLinkedList *&engineList) {
