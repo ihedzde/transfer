@@ -121,10 +121,12 @@ namespace Utilities {
                     engineList->printNodes();
                     break;
                 case '4':
-                    cout << engineList->sumEnginesPowers(EngineType::DieselEngine);
+                    cout << "Diesel engine ∑ " ;
+                    cout << engineList->sumEnginesPowers(EngineType::DieselEngine)<<" 🐴"<< endl;
                     break;
                 case '5':
-                    cout << engineList->sumEnginesPowers(EngineType::JetEngine);
+                    cout << "Jet engine ∑ " ;
+                    cout << engineList->sumEnginesPowers(EngineType::JetEngine) <<" 🐴"<< endl;
                     break;
                 case '6':
                     cout << "Input id:";
