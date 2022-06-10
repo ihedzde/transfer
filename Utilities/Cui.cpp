@@ -149,6 +149,7 @@ namespace Utilities {
                 case 'c':
                     delete engineList;
                     engineList = new RoundedDoublyLinkedList();
+                    cout << "List cleaned" << endl;
                     break;
             }
         } while (variant != 'e');
